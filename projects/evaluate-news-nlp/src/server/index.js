@@ -60,12 +60,7 @@ function addData(request, response){
 }
 
 app.post('/getSentiment',function(request, response){
-    const text = request.body.text;
-    console.log(text);
-    const data = getSentiment(baseURL,text,apiKey);
-    return data;
-
-const getSentiment = async (baseURL, text, key)=>{ //from WJ project needs to be changed
+    const getSentiment = async (baseURL, text, key)=>{ //from WJ project needs to be changed
     const res = await fetch(baseURL+key+'&lang=en&txt='+text+'&model=general') //fetch api url
     try {
       const data = await res.json();
@@ -74,6 +69,13 @@ const getSentiment = async (baseURL, text, key)=>{ //from WJ project needs to be
       console.log("error at get sentiment", error); //error handling
     }
   }
+  
+    const text = request.body.text;
+    console.log(text);
+    const data = getSentiment(baseURL,text,apiKey);
+    return data;
+
+
 
 });
   
