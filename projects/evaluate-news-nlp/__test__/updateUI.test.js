@@ -7,6 +7,7 @@ describe("Testing the updateUI function",()=>{
         const allData = {agreement: 'AGREEMENT', score_tag: 'P', confidence: '100', subjectivity: 'SUBJECTIVE' };
 
         updateUI(allData);
+        
         const element = results.window.document.getElementById('results');
         expect(element.innerHTML).toEqual("Agreement: AGREEMENT. Score Tag: P. Confidence: 100. Subjectivity: SUBJECTIVE.");
     });
