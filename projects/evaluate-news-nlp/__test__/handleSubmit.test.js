@@ -4,13 +4,11 @@ const {JSDOM} = require ('jsdom');
 
 describe("Testing the handleSubmit() function",()=>{
     test("Testing the handleSubmit() function", () => {     
-        const results = new JSDOM('<div id="results"></div>');
-        
-        document.getElementById('name').innerHTML = 'you look good';
-       
+        const results = new JSDOM('<div id="name">you look good</div><div id="results"></div>');
+        const element = results.window.document.getElementById('results');
+               
         handleSubmit('click');
        
-        const element = results.window.document.getElementById('results');
         expect(element.innerHTML).toEqual("Agreement: AGREEMENT. Score Tag: P. Confidence: 100. Subjectivity: SUBJECTIVE.");
 
     })
