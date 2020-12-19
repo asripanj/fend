@@ -4,10 +4,12 @@ const {JSDOM} = require ('jsdom');
 
 describe("Testing the handleSubmit() function",()=>{
     test("Testing the handleSubmit() function", () => {     
-        document.body.innerHTML = `<div id="name">you look good</div>`;
-        const event = new Event('build');
+        document.body.innerHTML = `<div id="name">you look good</div><div id="text"></div>`
 
-        expect(handleSubmit(event)).toEqual("you look good");
+        const event = new Event('build');
+        handleSubmit(event);
+
+        expect(document.getElementById('text').innerHTML).toEqual('you look good');
 
     })
 });
