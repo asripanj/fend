@@ -8,6 +8,8 @@ function handleSubmit(event) {
           const element = document.getElementById('results');
           Client.updateUI(data, element) //update UI inside callback
        });
+
+       return formText;
 }
 
 export { handleSubmit }
