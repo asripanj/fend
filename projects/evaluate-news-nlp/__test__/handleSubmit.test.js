@@ -9,7 +9,7 @@ describe("Testing the handleSubmit() function",()=>{
         const event = new Event('build');
         handleSubmit(event);
 
-        expect(document.getElementById('text').innerHTML).toEqual('you look good');
+        expect(document.getElementById('text').innerHTML).toEqual('Thank you');
 
     })
 });

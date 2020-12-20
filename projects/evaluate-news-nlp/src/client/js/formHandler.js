@@ -1,14 +1,19 @@
-function handleSubmit(event) {    
-    if (document.getElementById('name') != null){
-      let formText = document.getElementById('name').value;
-      document.getElementById('text').innerHTML = formText;
-    }
+import {postData} from './postData'
+import {updateUI} from './updateUI'
 
-      Client.postData('http://localhost:8081/getSentiment',{text: formText})
-      .then(data=>{
-          const element = document.getElementById('results');
-          Client.updateUI(data, element) //update UI inside callback
-       });
+function handleSubmit(event) {    
+  event.preventDefault();
+  //if (document.getElementById('name') != null){
+      let formText = document.getElementById('name').value;
+      document.getElementById('text').innerHTML = 'Thank you';
+
+  //}
+
+  postData('http://localhost:8081/getSentiment',{text: formText})
+  .then(data=>{
+    const element = document.getElementById('results');
+    updateUI(data, element) //update UI inside callback
+  });
 }
 
 export { handleSubmit }

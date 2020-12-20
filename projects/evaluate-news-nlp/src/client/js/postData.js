@@ -11,6 +11,7 @@ const postData = async(url ='', data = {})=>{ //from weather journal proj
     try{
         const newData = await response.json();
         return newData;
+        console.log("::Data Returned::");
     }catch(error){
         console.log("error at postdata", error); //error handling
     }
