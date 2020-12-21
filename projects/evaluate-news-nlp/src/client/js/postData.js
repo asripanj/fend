@@ -1,4 +1,4 @@
-const postData = async(url ='', data = {})=>{ //from weather journal proj
+const postData = async(url ='', data = {})=>{ 
     const response= await fetch(url,{
         method: 'POST', //post route
         credentials: 'same-origin',

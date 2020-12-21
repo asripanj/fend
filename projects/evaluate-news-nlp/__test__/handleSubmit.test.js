@@ -3,15 +3,13 @@ const {JSDOM} = require ('jsdom');
 
 
 describe("Testing the handleSubmit() function",()=>{
-    test("Testing the handleSubmit() function", () => {     
+    test("Testing to see if new text appears in id = text as defined in function", () => {     
         document.body.innerHTML = `<div id="name">you look good</div><div id="text"></div>`
 
         const event = new Event('build');
         handleSubmit(event);
 
-        expect(document.getElementById('text').innerHTML).toEqual('Thank you');
+        expect(document.getElementById('text').innerHTML).toEqual('Thank you'); 
 
     })
 });
-
-//"Agreement: AGREEMENT. Score Tag: P. Confidence: 100. Subjectivity: SUBJECTIVE."

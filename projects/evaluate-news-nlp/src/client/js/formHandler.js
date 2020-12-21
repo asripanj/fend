@@ -3,11 +3,8 @@ import {updateUI} from './updateUI'
 
 function handleSubmit(event) {    
   event.preventDefault();
-  //if (document.getElementById('name') != null){
       let formText = document.getElementById('name').value;
       document.getElementById('text').innerHTML = 'Thank you';
-
-  //}
 
   postData('http://localhost:8081/getSentiment',{text: formText})
   .then(data=>{

@@ -17,8 +17,6 @@ dotenv.config();
 //meaning cloud api
 const baseURL ='https://api.meaningcloud.com/sentiment-2.1?key=';
 const apiKey= process.env.API_KEY;
-
-console.log(`Your API key is ${process.env.API_KEY}`);
  
 const app = express()
 
@@ -30,7 +28,6 @@ app.use(bodyParser.urlencoded({
 app.use(express.static('dist'))
 
 
-//console.log(JSON.stringify(mockAPIResponse))
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
    //res.sendFile(path.resolve('src/client/views/index.html'))
@@ -40,29 +37,6 @@ app.get('/', function (req, res) {
 app.listen(8081, function () {
     console.log('Example app listening on port 8081!')
 })
-
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse) //.json or .send fixing js file
-})
-
-//Get Route
-app.get('/all', function(request, response){
-    response.send(projectData);
-    console.log(projectData);
-})
-
-//Post Route
-app.post('/addData', addData);
-
-function addData(request, response){
-   let data = request.body;
-   projectData.agreement = data.agreement;
-   projectData.score_tag = data.score_tag;
-   projectData.confidence = data.confidence;
-   projectData.subjectivity = data.subjectivity;
-   projectData.userResp = data.userResp;
-   response.send(projectData);
-}
 
 app.post('/getSentiment', async function(request, response){
   const text = request.body.text;
