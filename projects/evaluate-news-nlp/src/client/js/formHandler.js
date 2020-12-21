@@ -6,19 +6,21 @@ function handleSubmit(event) {
       let formText = document.getElementById('name').value;
 
 
-  var regex = new RegExp('^[a-zA-Z\\s]+$'); //letters and whitespace only
-  if(regex.test(formText){
+  const regex = new RegExp('^[a-zA-Z\\s]+$'); //letters and whitespace only
+  console.log(regex.test(formtext));
+  if(regex.test(formText)){
     document.getElementById('text').innerHTML = 'Thank you';
+    postData('http://localhost:8081/getSentiment',{text: formText})
+    .then(data=>{
+      const element = document.getElementById('results');
+      updateUI(data, element) //update UI inside callback
+    });
   }
   else{
     document.getElementById('text').innerHTML = 'Invalid input - letters and whitespace only';
   }
 
-  postData('http://localhost:8081/getSentiment',{text: formText})
-  .then(data=>{
-    const element = document.getElementById('results');
-    updateUI(data, element) //update UI inside callback
-  });
+ 
 }
 
 export { handleSubmit }
