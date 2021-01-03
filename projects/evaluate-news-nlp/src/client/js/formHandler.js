@@ -1,16 +1,26 @@
-function handleSubmit(event) {
-    event.preventDefault()
+import {postData} from './postData'
+import {updateUI} from './updateUI'
 
-    // check what text was put into the form field
-    let formText = document.getElementById('name').value
-    checkForName(formText)
+function handleSubmit(event) {    
+  event.preventDefault();
+      let formText = document.getElementById('name').value;
 
-    console.log("::: Form Submitted :::")
-    fetch('http://localhost:8080/test')
-    .then(res => res.json())
-    .then(function(res) {
-        document.getElementById('results').innerHTML = res.message
-    })
+
+  const regex = new RegExp('^[a-zA-Z\\s]+$'); //letters and whitespace only
+  console.log(regex.test(formtext));
+  if(regex.test(formText)){
+    document.getElementById('text').innerHTML = 'Thank you';
+    postData('http://localhost:8081/getSentiment',{text: formText})
+    .then(data=>{
+      const element = document.getElementById('results');
+      updateUI(data, element) //update UI inside callback
+    });
+  }
+  else{
+    document.getElementById('text').innerHTML = 'Invalid input - letters and whitespace only';
+  }
+
+ 
 }
 
 export { handleSubmit }
