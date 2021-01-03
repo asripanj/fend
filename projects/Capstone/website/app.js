@@ -1,6 +1,6 @@
 /* Global Variables */
 const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-const apiKey= process.env.API_KEY;
+const apiKey= process.env.API_KEY; //add required depedencies and move to server
 
 // Create a new date instance dynamically with JS
 let d = new Date();
