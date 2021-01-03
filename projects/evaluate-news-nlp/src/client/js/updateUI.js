@@ -5,5 +5,4 @@ const updateUI = (allData, element) => {
         console.log("error at updateUI", error); //error handling
     }
 }
-
 export { updateUI }
