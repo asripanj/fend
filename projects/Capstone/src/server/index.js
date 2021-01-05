@@ -37,6 +37,18 @@ app.listen(8081, function () {
     console.log('Example app listening on port 8081!')
 })
 
+//getTemp post
+app.post('/getTemperature', async function(request, response){
+    const zip = request.body.text;
+    const res = await fetch(baseURL+zip+',us&appid='+apiKey) //fetch api url
+      try {
+        const data = await res.json();
+        response.send(data);
+      }  catch(error) {
+        console.log("error at get temperature", error); //error handling
+      }
+    });
+
 //Post Route
 app.post('/addData', addData);
 
