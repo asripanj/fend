@@ -3,7 +3,7 @@ import { performAction } from './js/performAction'
 import { postData } from './js/postData'
 import { updateUI } from './js/updateUI'
 
-import './styles/styles.scss'
+import './styles/style.scss'
 
 document.getElementById('generate').addEventListener('click', performAction); //Listen for click
 
