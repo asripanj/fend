@@ -13,7 +13,7 @@ function performAction(e){
     .then(function(data){
         postData('http://localhost:8081/addData', {temperature: data.main.temp, date: newDate, userResp:feelings}) //post Data with new information
     }).then(data=>{
-        console.log(data)
+        console.log(data);
         updateUI(data)
     });
 }
