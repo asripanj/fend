@@ -1,7 +1,5 @@
-const updateUI = async () => {
-    const request = await fetch('/all');
+const updateUI = (allData) => { 
     try{
-        const allData = await request.json();
         console.log(allData);
         document.getElementById('temp').innerHTML =  `The temperature is ${allData.temperature} Farenheit`; //add to existing html elements
         document.getElementById('date').innerHTML = `Today is ${allData.date}`;
@@ -10,5 +8,4 @@ const updateUI = async () => {
         console.log("error at updateUI", error); //error handling
     }
 }
-
-export {updateUI}
+export { updateUI }
