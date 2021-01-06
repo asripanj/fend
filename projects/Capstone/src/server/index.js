@@ -57,5 +57,6 @@ function addData(request, response){
     projectData.temperature = data.temperature;
     projectData.date = data.date;
     projectData.userResp = data.userResp;
+    console.log(projectData);
     response.send(projectData);
 }
