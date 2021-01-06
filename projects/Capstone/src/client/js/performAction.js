@@ -11,10 +11,11 @@ function performAction(e){
 
     postData('http://localhost:8081/getTemperature',{text: zip})
     .then(function(data){
-        postData('http://localhost:8081/addData', {temperature: data.main.temp, date: newDate, userResp:feelings}) //post Data with new information
-    }).then(data=>{
-        console.log(data);
-        updateUI(data)
+        const tempData = postData('http://localhost:8081/addData', {temperature: data.main.temp, date: newDate, userResp:feelings}) //post Data with new information
+        return tempData;
+    }).then(tempData=>{
+        console.log(tempData);
+        updateUI(tempData)
     });
 }
 
