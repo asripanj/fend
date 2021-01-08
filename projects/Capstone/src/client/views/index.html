@@ -12,20 +12,28 @@
     Weather Journal App
   </div>
   <div class ="holder zip">
-    <label for="zip">Enter Zipcode here</label>
-    <input type="text" id="zip" placeholder="enter zip code here">
+    <label for="city">Enter City Name Here</label>
+    <input type="text" id="city" placeholder="enter city name here">
   </div>
   <div class ="holder feel">
-    <label for="feelings">How are you feeling today?</label>
-    <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
+    <label for="tripDate">Arrival Date?</label>
+    <textarea class= "myInput" id="monthA" placeholder="Month" rows="1" cols="4"></textarea>
+    <textarea class= "myInput" id="dayA" placeholder="Day" rows="1" cols="2"></textarea>
+    <textarea class= "myInput" id="yearA" placeholder="Year" rows="1" cols="3"></textarea>
+    <label for="tripDate">Departure Date?</label>
+    <textarea class= "myInput" id="monthD" placeholder="Month" rows="1" cols="4"></textarea>
+    <textarea class= "myInput" id="dayD" placeholder="Day" rows="1" cols="2"></textarea>
+    <textarea class= "myInput" id="yearD" placeholder="Year" rows="1" cols="3"></textarea>
     <button id="generate" type = "submit"> Generate </button>
   </div>
   <div class ="holder entry">
     <div class = "title">Most Recent Entry</div>
    <div id = "entryHolder">
     <div id = "date"></div> 
-   <div id = "temp"></div>
-   <div id = "content"></div>
+   <div id = "latitude"></div>
+   <div id = "longitude"></div>
+   <div id = "country"></div>
+   <div id = "count"></div>
   </div>
   </div>
   </div>

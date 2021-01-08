@@ -14,8 +14,12 @@ const { request } = require('http')
 dotenv.config();
 
 //open weather map api
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-const apiKey= process.env.API_KEY;
+//const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
+//const apiKey= process.env.API_KEY;
+
+const geoURL ='http://api.geonames.org/searchJSON?q='
+const geoKey = process.env.GEO_KEY
+//Fauquier&maxRows=1&username=udacity_aranje
  
 const app = express()
 
@@ -37,6 +41,7 @@ app.listen(8081, function () {
     console.log('Example app listening on port 8081!')
 })
 
+/*
 //getTemp post
 app.post('/getTemperature', async function(request, response){
     const zip = request.body.text;
@@ -49,14 +54,30 @@ app.post('/getTemperature', async function(request, response){
       }
     });
 
-//Post Route
-app.post('/addData', addData);
+*/
 
-function addData(request, response){
+app.post('/getCoordinates', async function(request, response){
+    const city = request.body.text;
+    const res = await fetch(geoURL+city+'&maxRows=1&username='+geoKey) //fetch api url
+      try {
+        const data = await res.json();
+        response.send(data);
+      }  catch(error) {
+        console.log("error at get coordinates", error); //error handling
+      }
+    });
+
+//Post Route
+app.post('/addCoordinates', addCoordinates);
+
+function addCoordinates(request, response){
     let data = request.body;
-    projectData.temperature = data.temperature;
+    projectData.latitude = data.latitude;
+    projectData.longitude = data.longitude;
+    projectData.country = data.country;
     projectData.date = data.date;
-    projectData.userResp = data.userResp;
+    projectData.aDate = data.aDate;
+    projectData.count = data.count;
     console.log(projectData);
     response.send(projectData);
 }
