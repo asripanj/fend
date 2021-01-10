@@ -58,6 +58,7 @@ app.post('/getTemperature', async function(request, response){
 
 app.post('/getCoordinates', async function(request, response){
     const city = request.body.text;
+    projectData.city = city;
     const geoURL =`http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=${process.env.GEO_KEY}`;
     const res = await fetch(geoURL) //fetch api url
       try {
@@ -79,9 +80,26 @@ app.post('/getWeather', async function(request, response){
       //console.log(data);
       response.send(data.data[coord.count]);
     }  catch(error) {
-      console.log("error at get coordinates", error); //error handling
+      console.log("error at get weather", error); //error handling
     }
 });
+
+app.post('/getImage', async function(request, response){
+  //const city = request.body.text;
+  //console.log(request.body.text);
+  //console.log(coord);
+  const pixURL =`https://pixabay.com/api/?key=${process.env.PIX_KEY}&q=${projectData.city}+city&image_type=photo`;
+  const res = await fetch(pixURL) //fetch api url
+    try {
+      const data = await res.json();
+      //const url = JSON.stringify(data.hits[0].webformatURL);
+      console.log(data.hits[0].webformatURL);
+      response.send(data.hits[0]);
+    }  catch(error) {
+      console.log("error at get image", error); //error handling
+    }
+});
+
 
 //Post Route
 app.post('/addCoordinates', addCoordinates);
@@ -97,6 +115,7 @@ function addCoordinates(request, response){
     projectData.dDate = data.dDate;
     projectData.count = data.count
 
+    
     console.log(projectData);
     response.send(projectData);
 }

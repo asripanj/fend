@@ -34,11 +34,11 @@ function performAction(e){
         const tempData = postData('http://localhost:8081/addCoordinates', {maxTemp: weatherData.max_temp, minTemp: weatherData.min_temp, feel: weatherData.weather.description, date:today, aDate: arriveDate, dDate: departureDate, count:countdown}); //post Data with new information
         return tempData;
     }).then(tempData=>{
-        console.log(tempData);
-        updateUI(tempData);
+        //console.log(tempData);
+        const imageData = postData('http://localhost:8081/getImage', {visitingCity: city}); //post Data with new information
+        console.log(imageData);
+        updateUI(tempData, imageData);
     });
 }
 
 export {performAction}
-
-//fix where listening is happening
