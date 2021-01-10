@@ -5,7 +5,7 @@ const updateUI = (allData, imageURL) => {
         document.getElementById('low').innerHTML =  `Low Temperatures: ${allData.minTemp}`; 
         document.getElementById('feel').innerHTML =  `Looks like ${allData.feel}`; 
         document.getElementById('date').innerHTML =  `Today is ${allData.date}`; 
-        document.getElementById('count').innerHTML =  `Countdown: ${allData.count}`; 
+        document.getElementById('count').innerHTML =  `Your trip is in ${allData.count} days and is ${allData.length} days long`; 
         document.getElementById('image').setAttribute('src', imageURL);
 
 

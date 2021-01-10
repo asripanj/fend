@@ -16,28 +16,25 @@ function performAction(e){
     let arriveDate = new Date(yearA,monthA-1,dayA);
     let departureDate = new Date (yearD, monthD-1, dayD);
     let countdown = Math.ceil(((arriveDate.getTime()-d.getTime())/(1000*3600*24)));
-  //  console.log(countdown);
-  //  console.log(arriveDate);
-  //  console.log(departureDate);
-  //  console.log(d);
+    let tripLength = Math.ceil(((departureDate.getTime()-arriveDate.getTime())/(1000*3600*24))); //length of trip
 
-
+    //get coordinates api call
     postData('http://localhost:8081/getCoordinates',{text: city})
     .then(function(data){
-        //console.log(data);
-        //const country = data.geonames[0].countryName
+        //weatherbit api call
         const weatherData= postData('http://localhost:8081/getWeather',{latitude: data.geonames[0].lat, longitude: data.geonames[0].lng, country: data.geonames[0].countryName, count:countdown});
-       // const tempData = postData('http://localhost:8081/addCoordinates', {latitude: data.geonames[0].lat, longitude: data.geonames[0].lng, country: data.geonames[0].countryName, date: today, aDate: arriveDate, count: countdown}) //post Data with new information
         return weatherData;
     }).then(weatherData=>{
-        //console.log(weatherData);
-        const tempData = postData('http://localhost:8081/addCoordinates', {maxTemp: weatherData.max_temp, minTemp: weatherData.min_temp, feel: weatherData.weather.description, date:today, aDate: arriveDate, dDate: departureDate, count:countdown}); //post Data with new information
+        //add data to project endpoint
+        const tempData = postData('http://localhost:8081/addCoordinates', {maxTemp: weatherData.max_temp, minTemp: weatherData.min_temp, feel: weatherData.weather.description, date:today, aDate: arriveDate, dDate: departureDate, count:countdown, length:tripLength}); //post Data with new information
         return tempData;
     }).then(tempData=>{
-        //console.log(tempData);
-        const imageData = postData('http://localhost:8081/getImage', {visitingCity: city}); //post Data with new information
-        console.log(imageData);
-        updateUI(tempData, imageData);
+        //pixbay api call
+        postData('http://localhost:8081/getImage', {visitingCity: city}).then(function(data){
+            console.log(data.webformatURL);
+            console.log(tempData);
+            updateUI(tempData, data.webformatURL);
+        }); 
     });
 }
 

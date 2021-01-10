@@ -13,14 +13,6 @@ const { request } = require('http')
 
 dotenv.config();
 
-//open weather map api
-//const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-//const apiKey= process.env.API_KEY;
-
-
-
-
-
 const app = express()
 
 app.use(cors())
@@ -33,28 +25,12 @@ app.use(express.static('dist'))
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
-   //res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
     console.log('Example app listening on port 8081!')
 })
-
-/*
-//getTemp post
-app.post('/getTemperature', async function(request, response){
-    const zip = request.body.text;
-    const res = await fetch(baseURL+zip+',us&appid='+apiKey) //fetch api url
-      try {
-        const data = await res.json();
-        response.send(data);
-      }  catch(error) {
-        console.log("error at get temperature", error); //error handling
-      }
-    });
-
-*/
 
 app.post('/getCoordinates', async function(request, response){
     const city = request.body.text;
@@ -69,30 +45,25 @@ app.post('/getCoordinates', async function(request, response){
       }
 });
 
-
+//Weatherbit api to get weather data
 app.post('/getWeather', async function(request, response){
   const coord = request.body;
-  //console.log(coord);
   const bitURL =`https://api.weatherbit.io/v2.0/forecast/daily?&lat=${coord.latitude}&lon=${coord.longitude}&key=${process.env.BIT_KEY}`;
   const res = await fetch(bitURL) //fetch api url
     try {
       const data = await res.json();
-      //console.log(data);
       response.send(data.data[coord.count]);
     }  catch(error) {
       console.log("error at get weather", error); //error handling
     }
 });
 
+//Pixbay api to get pixbay image
 app.post('/getImage', async function(request, response){
-  //const city = request.body.text;
-  //console.log(request.body.text);
-  //console.log(coord);
   const pixURL =`https://pixabay.com/api/?key=${process.env.PIX_KEY}&q=${projectData.city}+city&image_type=photo`;
   const res = await fetch(pixURL) //fetch api url
     try {
       const data = await res.json();
-      //const url = JSON.stringify(data.hits[0].webformatURL);
       console.log(data.hits[0].webformatURL);
       response.send(data.hits[0]);
     }  catch(error) {
@@ -101,21 +72,21 @@ app.post('/getImage', async function(request, response){
 });
 
 
-//Post Route
+//Post Route to add to project endpoint
 app.post('/addCoordinates', addCoordinates);
 
 function addCoordinates(request, response){
     let data = request.body;
-    //console.log(data);
+
     projectData.maxTemp = data.maxTemp;
     projectData.minTemp = data.minTemp;
     projectData.feel = data.feel;
     projectData.date = data.date;
     projectData.aDate = data.aDate;
     projectData.dDate = data.dDate;
-    projectData.count = data.count
+    projectData.count = data.count;
+    projectData.length = data.length;
 
-    
     console.log(projectData);
     response.send(projectData);
-}
+};
