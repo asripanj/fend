@@ -1,10 +1,4 @@
-# Weather-Journal App Project
+# Capstone
 
 ## Overview
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
-
-## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
-
-## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
+This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. This will be a travel app where you can include date and location you want to visit. This will then return an image, and the expected weather for the location. The added functionality to this project is that it displays the end date of the trip.

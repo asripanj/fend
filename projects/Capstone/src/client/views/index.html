@@ -27,15 +27,25 @@
   </div>
   <div class ="holder entry">
     <div class = "title">Most Recent Entry</div>
-   <div id = "entryHolder">
-    <div id = "date"></div> 
-   <div id = "high"></div>
-   <div id = "low"></div>
-   <div id = "feel"></div>
-   <div id = "count"></div>
-   <img id ="image" src="" alt="destination">
+    <div id="text"></div>
+    <div id = "entryHolder">
+      <div id = "date"></div> 
+      <div id = "high"></div>
+      <div id = "low"></div>
+      <div id = "feel"></div>
+      <div id = "count"></div>
+      <img id ="image" src="" alt="destination">
+    </div>
   </div>
   </div>
-  </div>
+  <script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js');
+        });
+    }
+</script>
 </body>
 </html>

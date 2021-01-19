@@ -17,6 +17,8 @@ function performAction(e){
     let departureDate = new Date (yearD, monthD-1, dayD);
     let countdown = Math.ceil(((arriveDate.getTime()-d.getTime())/(1000*3600*24)));
     let tripLength = Math.ceil(((departureDate.getTime()-arriveDate.getTime())/(1000*3600*24))); //length of trip
+    document.getElementById('text').innerHTML = 'Thank you';
+
 
     //get coordinates api call
     postData('http://localhost:8081/getCoordinates',{text: city})
