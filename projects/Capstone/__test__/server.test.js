@@ -4,6 +4,6 @@ const request = supertest(app);
 
 it('testing server endpoint', async done => {
     const res = await request.get('/test')
-    expect(res.status).toBe(200);
+    expect(res.body.message).toBe('pass!');
     done()
 })
