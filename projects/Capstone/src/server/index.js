@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+let projectData = {};
 
 var path = require('path')
 const express = require('express')
@@ -90,3 +90,7 @@ function addCoordinates(request, response){
     console.log(projectData);
     response.send(projectData);
 };
+
+app.get('/test', async (req, res) => {
+  res.json({message: 'pass!'})
+})
