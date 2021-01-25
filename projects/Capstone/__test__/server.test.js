@@ -1,9 +1,9 @@
-const app = require('../src/server/index.js');
+const app = require('../src/server/index');
 const supertest = require('supertest');
 const request = supertest(app);
 
 it('testing server endpoint', async done => {
     const res = await request.get('/test')
     expect(res.body.message).toBe('pass!');
-    //done()
+    done();
 })
